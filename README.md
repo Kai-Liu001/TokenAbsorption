@@ -3,10 +3,8 @@
 ### A Symmetric Causal Analysis of Visual Information Absorption in Vision-Language Models
 
 [![Status](https://img.shields.io/badge/Status-Under%20Review-lightgrey)](#news)
-![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Kai-
-  Liu001.TokenAbsorption)
-![Stars](https://img.shields.io/github/stars/Kai-Liu001/
-  TokenAbsorption?style=social)
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Kai-Liu001.TokenAbsorption)
+![Stars](https://img.shields.io/github/stars/Kai-Liu001/TokenAbsorption?style=social)
 
 [project](#) |
 [arXiv](#) |
