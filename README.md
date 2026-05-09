@@ -2,17 +2,15 @@
 
 ### A Symmetric Causal Analysis of Visual Information Absorption in Vision-Language Models
 
-[![Paper](https://img.shields.io/badge/Paper-PDF-red)](<./_Kai_Liu__NeurIPS_26_TokenAbsorption_VLM (2).pdf>)
 [![Status](https://img.shields.io/badge/Status-Under%20Review-lightgrey)](#news)
-![Downloads](https://img.shields.io/badge/downloads-TODO-brightgreen)
-![Visitors](https://img.shields.io/badge/visitors-TODO-blue)
-![Stars](https://img.shields.io/badge/Stars-TODO-lightgrey?logo=github)
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Kai-
+  Liu001.TokenAbsorption)
+![Stars](https://img.shields.io/github/stars/Kai-Liu001/
+  TokenAbsorption?style=social)
 
 [project](#) |
 [arXiv](#) |
-[supplementary material](#) |
-[dataset](#) |
-[pretrained models](#)
+<!-- [supplementary material](#) | -->
 
 **Authors:** Kai Liu, Anqi Li, Ziqing Zhang, Zhixin Wang, Zhikai Chen, Renjing Pei, Yulun Zhang  
 
