@@ -53,5 +53,4 @@ If you find this work useful, please cite:
 This project is released under the [Apache License 2.0](LICENSE).
 
 ## 👍 Acknowledgements
- We thank the open-source VLM community for releasing models, datasets, and tools that make this analysis possible. This work builds on prior efforts in multimodal representation analysis, causal intervention, activation patching, and efficient vision-language inference. We are grateful to the developers of InternVL, Bunny, and other evaluated VLMs for providing accessible model implementations. 
- We also thank the maintainers of benchmark datasets used for visual question answering, OCR reasoning, captioning, and multimodal science reasoning. Their contributions provide the foundation for studying how visual information is absorbed, transformed, and eventually made dispensable inside modern vision-language models.
+We thank the open-source VLM community, especially InternVL, LLaVA, Qwen2.5-VL, Phi-3.5-Vision, SmolVLM2, and Bunny, for accessible model releases. We also thank the maintainers of ScienceQA, POPE, TextVQA, MMBench, and SEED-Bench, which make systematic visual information absorption analysis possible.
