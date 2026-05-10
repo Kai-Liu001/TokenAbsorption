@@ -6,7 +6,7 @@
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Kai-Liu001.TokenAbsorption)
 ![Stars](https://img.shields.io/github/stars/Kai-Liu001/TokenAbsorption?style=social)
 
-[project](#) |
+[project](https://kai-liu001.github.io/TokenAbsorption/) |
 [arXiv](#) 
 <!-- [supplementary material](#) | -->
 
