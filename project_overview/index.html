@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title"
+    content="When Do Visual Tokens Become Dispensable? - Kai Liu, Anqi Li, Ziqing Zhang, Zhixin Wang, Zhikai Chen, Renjing Pei, Yulun Zhang">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description"
+    content="A symmetric causal analysis of visual information absorption in vision-language models.">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords"
+    content="vision-language models, visual tokens, visual information absorption, causal intervention, activation patching, token pruning, machine learning, computer vision, AI">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="Kai Liu, Anqi Li, Ziqing Zhang, Zhixin Wang, Zhikai Chen, Renjing Pei, Yulun Zhang">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title" content="When Do Visual Tokens Become Dispensable?">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description"
+    content="A symmetric causal analysis of visual information absorption in vision-language models.">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="static/images/fig1_teaser.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TokenAbsorption teaser figure">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Kai Liu">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="vision-language models">
+  <meta property="article:tag" content="visual information absorption">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <meta name="twitter:creator" content="@Kai_Liu21">
+  <!-- TODO: Same as paper title above -->
+  <meta name="twitter:title" content="When Do Visual Tokens Become Dispensable?">
+  <!-- TODO: Same as description above -->
+  <meta name="twitter:description"
+    content="A symmetric causal analysis of visual information absorption in vision-language models.">
+  <!-- TODO: Same as social preview image above -->
+  <meta name="twitter:image" content="static/images/fig1_teaser.png">
+  <meta name="twitter:image:alt" content="TokenAbsorption teaser figure">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title"
+    content="When Do Visual Tokens Become Dispensable? A Symmetric Causal Analysis of Visual Information Absorption in Vision-Language Models">
+  <meta name="citation_author" content="Liu, Kai">
+  <meta name="citation_author" content="Li, Anqi">
+  <meta name="citation_author" content="Zhang, Ziqing">
+  <meta name="citation_author" content="Wang, Zhixin">
+  <meta name="citation_author" content="Chen, Zhikai">
+  <meta name="citation_author" content="Pei, Renjing">
+  <meta name="citation_author" content="Zhang, Yulun">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="arXiv">
+  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>When Do Visual Tokens Become Dispensable? | TokenAbsorption</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "PAPER_TITLE",
+    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "static/images/fig1_teaser.png",
+    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
+    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- More Works Dropdown -->
+  <div class="more-works-container">
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
+      <i class="fas fa-flask"></i>
+      More Works
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>More Works from Our Lab</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <!-- TODO: Replace with your lab's related works -->
+        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
+          <div class="work-info">
+            <!-- TODO: Replace with actual paper title -->
+            <h5>Paper Title 1</h5>
+            <!-- TODO: Replace with brief description -->
+            <p>Brief description of the work and its main contribution.</p>
+            <!-- TODO: Replace with venue and year -->
+            <span class="work-venue">Conference/Journal 2024</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <!-- TODO: Add more related works or remove extra items -->
+        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 2</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2023</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 3</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2023</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <!-- TODO: Replace with your paper title -->
+              <h1 class="title is-1 publication-title">When Do Visual Tokens Become Dispensable?</h1>
+              <h2 class="subtitle is-3 publication-subtitle">A Symmetric Causal Analysis of Visual Information
+                Absorption in Vision-Language Models</h2>
+              <div class="is-size-5 publication-authors">
+                <!-- TODO: Replace with your paper authors and their personal links -->
+                <span class="author-block">
+                  <a href="https://kai-liu.cn/" target="_blank">Kai Liu</a>,</span>
+                <span class="author-block">
+                  <a href="https://github.com/starrywiki" target="_blank">Anqi Li</a>,</span>
+                <span class="author-block">
+                  <a href="https://github.com/sjtuzzq" target="_blank">Ziqing Zhang</a>,</span>
+                <span class="author-block">
+                  Zhixin Wang,</span>
+                <span class="author-block">
+                  Zhikai Chen,</span>
+                <span class="author-block">
+                  Renjing Pei,</span>
+                <span class="author-block">
+                  <a href="https://yulunzhang.com/" target="_blank">Yulun Zhang</a>,</span>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <!-- TODO: Replace with your institution and conference/journal info -->
+                <span class="author-block">arXiv 2026</span>
+                <!-- TODO: Remove this line if no equal contribution -->
+              </div>
+
+              <!-- TODO: Replace with your GitHub repository URL -->
+              <span class="link-block">
+                <a href="https://github.com/Kai-Liu001/TokenAbsorption" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <!-- TODO: Update with your arXiv paper ID -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </section>
+
+
+    <!-- Teaser video-->
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="static/images/fig1_teaser.png" alt="TokenAbsorption teaser figure" loading="lazy" />
+          <!-- TODO: Replace with your figure description -->
+          <h2 class="subtitle has-text-centered">
+            Visual information is progressively absorbed from visual tokens into text residual states, making many
+            visual tokens dispensable after the absorption stage.
+          </h2>
+        </div>
+      </div>
+    </section>
+    <!-- End teaser video -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <!-- TODO: Replace with your paper abstract -->
+              <p>
+                Vision-Language Models (VLMs) process hundreds of visual tokens alongside text, yet it remains unclear
+                when these tokens stop contributing useful information during the forward pass. We introduce a symmetric
+                interventional framework of matched visual- and text-side zero-out, complemented by activation patching
+                and a controlled projector swap as strict causal tests, to measure visual information absorption: the
+                migration of visual content from visual tokens into the text residual stream. Across seven VLMs and five
+                benchmarks, we find that visual information accumulates in text hidden states, absorption depth is
+                task-dependent, text-side recovery is delayed relative to visual-side recovery, projector design
+                modulates spatial heterogeneity, and absorption depth scales monotonically with compression ratio.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
+
+
+    <!-- Methodology figure -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered">Methodology</h2>
+          <img src="static/images/fig2_method.png" alt="TokenAbsorption methodology figure" loading="lazy" />
+          <h2 class="subtitle has-text-centered">
+            TokenAbsorption measures when and where visual information is stored by applying matched visual- and
+            text-side probes and interventions across LLM layers.
+          </h2>
+        </div>
+      </div>
+    </section>
+    <!-- End methodology figure -->
+
+
+
+
+    <!-- Findings -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Findings</h2>
+
+        <div class="box">
+          <h3 class="title is-4">Finding 1: Visual information concentrates in text residual states.</h3>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Model</th>
+                  <th colspan="2">ScienceQA</th>
+                  <th colspan="2">POPE</th>
+                  <th colspan="2">MMBench</th>
+                  <th colspan="2">SEED-Bench</th>
+                </tr>
+                <tr>
+                  <th>Text</th>
+                  <th>Visual</th>
+                  <th>Text</th>
+                  <th>Visual</th>
+                  <th>Text</th>
+                  <th>Visual</th>
+                  <th>Text</th>
+                  <th>Visual</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>InternVL-8B</td><td>96.4</td><td>39.9</td><td>93.5</td><td>22.5</td><td>87.0</td><td>35.0</td><td>71.5</td><td>27.5</td></tr>
+                <tr><td>LLaVA-7B</td><td>70.5</td><td>40.8</td><td>94.2</td><td>22.2</td><td>73.5</td><td>34.0</td><td>58.5</td><td>25.5</td></tr>
+                <tr><td>Qwen2.5-VL-7B</td><td>92.5</td><td>40.6</td><td>93.8</td><td>22.2</td><td>87.0</td><td>33.0</td><td>72.5</td><td>27.5</td></tr>
+                <tr><td>SmolVLM2-2B</td><td>90.5</td><td>38.9</td><td>94.0</td><td>22.5</td><td>76.5</td><td>35.5</td><td>63.5</td><td>28.5</td></tr>
+              </tbody>
+              <tfoot>
+                <tr><th>Avg. &Delta;</th><th colspan="2">+46 pp</th><th colspan="2">+72 pp</th><th colspan="2">+50 pp</th><th colspan="2">+39 pp</th></tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              Linear probes recover substantially more task information from text residual states than from visual-token
+              states. This supports the paper's central claim that visual evidence migrates into the text stream during
+              the forward pass.
+            </p>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3 class="title is-4">Finding 2: Absorption depth is task-dependent.</h3>
+          <img class="paper-figure figure-wide" src="static/images/fig_task.png" alt="Task-dependent absorption depth across benchmarks" loading="lazy" />
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table compact-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Model</th>
+                  <th colspan="3">Probe accuracy on ScienceQA</th>
+                  <th colspan="3">Visual zero-out recovery</th>
+                </tr>
+                <tr>
+                  <th>Full</th>
+                  <th>Blank</th>
+                  <th>&Delta;</th>
+                  <th>ScienceQA</th>
+                  <th>POPE</th>
+                  <th>TextVQA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>InternVL-8B</td><td>97.5<sub>L34</sub></td><td>76.0<sub>L26</sub></td><td>+21.5 pp</td><td>L18/50%</td><td>L20/56%</td><td>L34/94%</td></tr>
+                <tr><td>InternVL3-14B</td><td>99.5<sub>L34</sub></td><td>80.0<sub>L42</sub></td><td>+19.5 pp</td><td>L28/58%</td><td>L24/50%</td><td>L46/96%</td></tr>
+                <tr><td>Qwen2.5-VL-7B</td><td>92.5<sub>L24</sub></td><td>74.0<sub>L20</sub></td><td>+18.5 pp</td><td>L18/64%</td><td>L18/64%</td><td>L26/93%</td></tr>
+                <tr><td>Phi-3.5-Vision</td><td>93.5<sub>L26</sub></td><td>75.0<sub>L22</sub></td><td>+18.5 pp</td><td>L18/56%</td><td>L18/56%</td><td>L30/94%</td></tr>
+                <tr><td>SmolVLM2-2B</td><td>90.5<sub>L20</sub></td><td>69.0<sub>L20</sub></td><td>+21.5 pp</td><td>L22/92%</td><td>L20/83%</td><td>never</td></tr>
+                <tr><td>LLaVA-NeXT-8B</td><td>73.5<sub>L30</sub></td><td>71.0<sub>L20</sub></td><td>+2.5 pp</td><td>L14/44%</td><td>L14/44%</td><td>L30/94%*</td></tr>
+                <tr><td>LLaVA-1.5-7B</td><td>70.5<sub>L14</sub></td><td>70.0<sub>L18</sub></td><td>+0.5 pp</td><td>L16/50%</td><td>L14/44%</td><td>L24/75%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              Visual-token zero-out recovers at different depths across benchmarks. ScienceQA and POPE usually recover
+              in the middle layers, while TextVQA recovers much later or never, showing that OCR-heavy tasks retain
+              visual dependence longer.
+            </p>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3 class="title is-4">Finding 3: Asymmetric recovery reveals layered absorption.</h3>
+          <img class="paper-figure figure-wide" src="static/images/fig3.png" alt="Asymmetric visual and text zero-out recovery" loading="lazy" />
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table compact-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>L</th>
+                  <th>Projector family</th>
+                  <th>Visual recovery</th>
+                  <th>Text recovery</th>
+                  <th>&Delta;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>InternVL3.5-8B</td><td>36</td><td>MLP + pixel-shuffle</td><td>L18 / 50%</td><td>L24 / 67%</td><td>+6</td></tr>
+                <tr><td>InternVL3-14B</td><td>48</td><td>MLP + pixel-shuffle</td><td>L28 / 58%</td><td>L36 / 75%</td><td>+8</td></tr>
+                <tr><td>LLaVA-1.5-7B</td><td>32</td><td>linear MLP</td><td>L16 / 50%</td><td>L18 / 56%</td><td>+2</td></tr>
+                <tr><td>LLaVA-NeXT-8B</td><td>32</td><td>MLP</td><td>L14 / 44%</td><td>L18 / 56%</td><td>+4</td></tr>
+                <tr><td>Qwen2.5-VL-7B</td><td>28</td><td>MLP + cross-attention</td><td>L18 / 64%</td><td>L22 / 79%</td><td>+4</td></tr>
+                <tr><td>Phi-3.5-Vision</td><td>32</td><td>MLP</td><td>L18 / 56%</td><td>L20 / 62%</td><td>+2</td></tr>
+                <tr><td>SmolVLM2-2B</td><td>24</td><td>pixel-shuffle</td><td>L17 / 71%</td><td>L20 / 83%</td><td>+3</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              Matched visual- and text-side zero-out reveal a consistent recovery gap. Visual-token ablation recovers
+              earlier, while text residual ablation recovers later, indicating that visual evidence is first read from
+              visual tokens and then absorbed into text states.
+            </p>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3 class="title is-4">Finding 4: Projector complexity modulates spatial absorption heterogeneity.</h3>
+          <img class="paper-figure figure-medium" src="static/images/fig4.png" alt="Attention-ranked visual token groups" loading="lazy" />
+          <div class="content has-text-justified">
+            <p>
+              Attention-ranked groups separate background-like tokens from content-bearing tokens. Low- and mid-ranked
+              visual tokens become dispensable early, whereas the top-ranked content tokens recover later, exposing
+              structured spatial heterogeneity rather than uniform visual compression.
+            </p>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3 class="title is-4">Finding 5: Compression ratio scales monotonically with absorption depth.</h3>
+          <img class="paper-figure figure-medium" src="static/images/fig5.png" alt="Layer-wise visual token removal under different compression ratios" loading="lazy" />
+          <div class="content has-text-justified">
+            <p>
+              Increasing the removal ratio shifts the safe pruning depth later. Early layers are fragile because visual
+              content has not yet migrated, but once the model enters the absorption zone, aggressive visual-token
+              removal approaches baseline accuracy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End findings -->
+
+    <!-- Causal validation -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Causal Validation</h2>
+        <div class="box">
+          <img class="paper-figure figure-wide" src="static/images/fig6.png" alt="Projector swap causal validation" loading="lazy" />
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table compact-table">
+              <thead>
+                <tr>
+                  <th>Controlled projector comparison</th>
+                  <th>L</th>
+                  <th>Projector family</th>
+                  <th>Visual recovery</th>
+                  <th>Text recovery</th>
+                  <th>&Delta;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Bunny-Llama-3-8B v1.0</td><td>32</td><td>MLP only</td><td>L10 / 31%</td><td>L4 / 13%</td><td>-6</td></tr>
+                <tr><td>Bunny-Llama-3-8B v1.1</td><td>32</td><td>MLP + S<sup>2</sup>-Wrapper</td><td>never</td><td>L4 / 13%</td><td>&gt;&gt; 32</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              A within-family Bunny projector swap isolates the role of projector design. The MLP-only variant absorbs
+              visual information into text residual states, while the S<sup>2</sup>-Wrapper variant preserves task
+              accuracy through attention read-out at the answer position and never recovers under visual-token zero-out.
+              This validates that absorption is a causal design property, not merely a probing artifact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End causal validation -->
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@article{liu2026tokenabsorption,
+          title     = {When Do Visual Tokens Become Dispensable? A Symmetric Causal Analysis of Visual Information Absorption in Vision-Language Models},
+          author    = {Liu, Kai and Li, Anqi and Zhang, Ziqing and Wang, Zhixin and Chen, Zhikai and  Pei, Renjing and Zhang, Yulun},
+          journal = {arxiv},
+          year      = {2026}
+          }</code></pre>
+      </div>
+    </section>
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+
+              <p>
+                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                  target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                  href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                You are free to borrow the source code of this website, we just ask that you link back to this page in
+                the footer. <br> This website is licensed under a <a rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                  Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
