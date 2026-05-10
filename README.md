@@ -7,10 +7,10 @@
 ![Stars](https://img.shields.io/github/stars/Kai-Liu001/TokenAbsorption?style=social)
 
 [project](#) |
-[arXiv](#) |
+[arXiv](#) 
 <!-- [supplementary material](#) | -->
 
-**Authors:** Kai Liu, Anqi Li, Ziqing Zhang, Zhixin Wang, Zhikai Chen, Renjing Pei, Yulun Zhang  
+**Authors:** [Kai Liu](https://kai-liu.cn/), [Anqi Li](https://github.com/starrywiki), [Ziqing Zhang](https://github.com/sjtuzzq), Zhixin Wang, Zhikai Chen, Renjing Pei, [Yulun Zhang](https://yulunzhang.com/)  
 
 
 ### 🔥🔥🔥 News
@@ -43,7 +43,7 @@ If you find this work useful, please cite:
 @article{liu2026tokenabsorption,
   title     = {When Do Visual Tokens Become Dispensable? A Symmetric Causal Analysis of Visual Information Absorption in Vision-Language Models},
   author    = {Liu, Kai and Li, Anqi and Zhang, Ziqing and Wang, Zhixin and Chen, Zhikai and  Pei, Renjing and Zhang, Yulun},
-  booktitle = {arxiv},
+  journal = {arxiv},
   year      = {2026}
 }
 ```
